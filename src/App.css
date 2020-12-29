@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.App{
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+}
+
 body {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   color: white;
@@ -24,14 +33,14 @@ form {
 form input,
 form button {
   min-width: 0.5vh;
-  padding: 0.5rem;
+  padding: 0.25rem;
   font-size: 2rem;
   border: none;
   background: white;
 }
 
 form input{
-  margin-left: 2vh;
+  margin-left: 1vh;
   min-width: 0.8vh;
 }
 form button {
@@ -48,12 +57,13 @@ form button:hover {
 .todo-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .todo-list {
-  min-width: 30%;
+  display: list-item;
   list-style: none;
+
 }
 
 .todo {
@@ -61,10 +71,11 @@ form button:hover {
   background: white;
   font-size: 1.5rem;
   color: black;
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  justify-content: space-around;
   align-items: center;
   transition: all 1s ease;
+  width: 92%;
 }
 .filter-todo {
   padding: 1rem;
@@ -73,7 +84,8 @@ form button:hover {
   flex: 1;
   border: none;
   border-width: 0;
-  font-size: 1em;
+  font-size: 2vh;
+  margin-left: 1vh;
 }
 
 .trash-btn,
@@ -149,7 +161,7 @@ select {
 }
 */
 
-@media only screen and (min-width: 330px){
+@media only screen and (max-width: 700px){
   h1{
     font-size: xx-large;
   }
