@@ -63,7 +63,7 @@ function App() {
         setStatus={setStatus}
       />
       {/* le doy acceso a la funcion a traves de props al Form. */}
-      <TodoList setTodos={setTodos} todos={filteredTodos} />
+      <TodoList setTodos={setTodos} todos={filteredTodos} inputText={inputText} setInputText={setInputText} />
     </div>
   );
 }

@@ -14,20 +14,26 @@ const Todo = (props) =>{
         }));
     };
 
+    const editHandler = (e) =>{
+        console.log('updating')
+        props.setTodos(props.todos.map((item) => {
+            if (item.id === props.todo.id){
+                return { ...item, text: e.target.value}
+            }
+            return item
+        }));
+    };
+
     return(
         <div className="todo">
-            <li className={`todoItem ${props.todo.completed ? "completed" : ''}`}>{props.todo.text}</li>
-            <div>
+            {/* <li className={`todoItem ${props.todo.completed ? "completed" : ''}`}>{props.todo.text}</li> */}
+            <input type="text" className={`todoItem ${props.todo.completed ? "completed" : ''} todo-input `} required onChange={editHandler} defaultValue={props.todo.text}></input>
             <button onClick={completeHandler} className="complete-btn">
                 <i className="fas fa-check"></i>
             </button>
             <button onClick={deleteHandler} className="trash-btn">
                 <i className="fas fa-trash"></i>
             </button>
-            <button className="edit-btn">
-                <i className="fas fa-edit"></i>
-            </button>
-            </div>
         </div>
     );
 }
