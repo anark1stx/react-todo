@@ -1,23 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Form from "./components/Form";
+import TodoList from "./components/TodoList";
 
 function App() {
+  //state
+  const [inputText, setInputText] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [status, setStatus] = useState("all");
+  const [filteredTodos,setFilteredTodos] = useState([]);
+  
+  //effect
+
+  useEffect(() =>{
+    const getLocalTodos = () => {
+      if (window.localStorage.getItem("todos") === null){
+        window.localStorage.setItem("todos", JSON.stringify([]));
+      }else{
+        setTodos(JSON.parse(window.localStorage.getItem("todos")));
+      }
+    };
+    getLocalTodos();
+  }, []); //run once
+
+  useEffect(()=>{
+    const filterHandler= () => {
+      switch (status) {
+        case 'completed':
+          setFilteredTodos(todos.filter(todo => todo.completed === true));
+          break;
+        case 'uncompleted':
+          setFilteredTodos(todos.filter(todo => todo.completed === false));
+          break;
+        default:
+          setFilteredTodos(todos);
+          break;
+      }
+    };
+    
+    const saveLocalTodos = () => {
+      if (window.localStorage.getItem("todos") === null){
+        window.localStorage.setItem("todos", JSON.stringify([]));
+      }else{
+        window.localStorage.setItem("todos",JSON.stringify(todos));
+      }
+    };
+
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]); //run every time either todos or status changes
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Your Todo List</h1>
       </header>
+      <Form
+        todos={todos}
+        setTodos={setTodos}
+        inputText={inputText}
+        setInputText={setInputText}
+        setStatus={setStatus}
+      />
+      {/* le doy acceso a la funcion a traves de props al Form. */}
+      <TodoList setTodos={setTodos} todos={filteredTodos} />
     </div>
   );
 }
