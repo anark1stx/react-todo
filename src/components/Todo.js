@@ -17,12 +17,17 @@ const Todo = (props) =>{
     return(
         <div className="todo">
             <li className={`todoItem ${props.todo.completed ? "completed" : ''}`}>{props.todo.text}</li>
+            <div>
             <button onClick={completeHandler} className="complete-btn">
                 <i className="fas fa-check"></i>
             </button>
             <button onClick={deleteHandler} className="trash-btn">
                 <i className="fas fa-trash"></i>
             </button>
+            <button className="edit-btn">
+                <i className="fas fa-edit"></i>
+            </button>
+            </div>
         </div>
     );
 }
