@@ -15,17 +15,24 @@ header {
 
 header,
 form {
-  min-height: 20vh;
+  min-height: 10vh;
   display: flex;
+  align-self: center;
   justify-content: center;
   align-items: center;
 }
 form input,
 form button {
+  min-width: 0.5vh;
   padding: 0.5rem;
   font-size: 2rem;
   border: none;
   background: white;
+}
+
+form input{
+  margin-left: 2vh;
+  min-width: 0.8vh;
 }
 form button {
   color: #ff6f47;
@@ -33,6 +40,7 @@ form button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 form button:hover {
   background: #ff6f47;
   color: white;
@@ -140,3 +148,12 @@ select {
   transform: scale(1.5);
 }
 */
+
+@media only screen and (min-width: 330px){
+  h1{
+    font-size: xx-large;
+  }
+  form button i{
+    margin-right: 4vh;
+  }
+}
