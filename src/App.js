@@ -49,7 +49,7 @@ function App() {
     filterHandler();
     saveLocalTodos();
   }, [todos, status]); //run every time either todos or status changes
-
+  
   return (
     <div className="App">
       <header>
@@ -62,7 +62,7 @@ function App() {
         setInputText={setInputText}
         setStatus={setStatus}
       />
-      {/* le doy acceso a la funcion a traves de props al Form. */}
+      {/* use of props to give TodoList component access to the state. */}
       <TodoList setTodos={setTodos} todos={filteredTodos} inputText={inputText} setInputText={setInputText} />
     </div>
   );

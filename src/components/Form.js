@@ -8,7 +8,7 @@ const Form = (props) => {
   const submitTodoHandler = (e) =>{
     e.preventDefault();
     if (props.inputText !== ''){
-      props.setTodos([...props.todos, {text: props.inputText,completed: false, id: Math.random()*1000}]); //esto significa: todos los todos que habian antes + el nuevo todo
+      props.setTodos([...props.todos, {text: props.inputText,completed: false, id: uuidv4()}]); //... = all the previous todos + the new todo
       props.setInputText("");
     }else{
      alert('Please input something.'); 
@@ -19,6 +19,13 @@ const Form = (props) => {
   const statusHandler = (e) =>{
     props.setStatus(e.target.value);
   };
+
+  function uuidv4() { //thanks to: https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid/2117523#2117523
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
   return (
     <form>
